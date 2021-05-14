@@ -1,0 +1,36 @@
+version: "3.3"
+
+services:
+  pg:
+    image: postgres:9.6.6-alpine
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  webapp:
+    image: jfahrer/demo_web_app:wait_for_pg
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_HOST
+    depends_on:
+      - pg
+    ports:
+      - 9292
+  lb:
+    image: ctrillo/lb:latest
+    build:
+      context: ../reverse_proxy
+    depends_on:
+      - webapp
+    ports:
+      - 80:80
+    environment:
+      - PROXY_UPSTREAM
+    
+volumes:
+  pgdata:

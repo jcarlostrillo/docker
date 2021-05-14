@@ -1,0 +1,10 @@
+version: "3.3"
+
+services:
+  app:
+    image:  openjdk:7
+    build:
+      context: .
+    volumes:
+      - .:/usr/src/myapp
+    command: sh -c "javac MyClass.java && java MyClass"
