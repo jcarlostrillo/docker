@@ -5,7 +5,22 @@ services:
     image: ctrillo/uwsgi-nginx-flask:latest
     build: 
       context: .
+    environment:
+      - PYTHONUNBUFFERED
+      - FLASK_DEBUG
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_HOST
     volumes:
       - .:/app
     ports:
       - 80:5000
+  pg:
+    image: postgres:9.6-alpine
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    volumes:
+      - ./sql/create_table.sql:/docker-entrypoint-initdb.d/create-table.sql
