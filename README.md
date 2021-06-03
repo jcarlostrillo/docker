@@ -18,3 +18,8 @@ A basic configuration and information about the usar of the flags --read-only an
 ## entrypoint
 
 An example of the usage of the ENTRYPOINT plus the CMD commands in the Dockerfile.
+
+## entrypoint-load-balancer
+
+Another example of the usage of the ENTRYPOINT command. In this case, with a load balancer.
+
