@@ -12,3 +12,9 @@ This folder contains a docker-compose file with several services:
 
 
 ## docker-nginx-read-only
+
+A basic configuration and information about the usar of the flags --read-only and tmpfs.
+
+## entrypoint
+
+An example of the usage of the ENTRYPOINT plus the CMD commands in the Dockerfile.
